@@ -17,7 +17,7 @@ export default function useAuth() {
           router.push("/");
         }
       } else {
-        if (currentPath !== "/login" && currentPath !== "register") {
+        if (currentPath !== "/login" && currentPath !== "/register") {
           router.push("/login");
         }
       }
