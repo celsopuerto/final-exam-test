@@ -179,7 +179,7 @@ export default function RegisterPage() {
           <form onSubmit={handleRegister}>
             <input
               type="text"
-              placeholder="otp"
+              placeholder="OTP"
               className="block w-96 p-2 border border-gray-300 rounded-md mb-4"
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
@@ -193,7 +193,7 @@ export default function RegisterPage() {
           </form>
           <p className="mt-4">
             Didn{"'"}t receive an email?{" "}
-            <button onClick={handleResend}>Resendd</button>
+            <button onClick={handleResend}>Resend</button>
           </p>
         </div>
       )}
