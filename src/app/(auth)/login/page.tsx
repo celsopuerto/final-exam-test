@@ -57,7 +57,7 @@ export default function LoginPage() {
             type="submit"
             className="block w-96 p-2 bg-blue-500 text-white rounded-md"
           >
-            {loading ? "Loading..." : "Register"}
+            {loading ? "Loading..." : "Login"}
           </button>
         </form>
         <p className="mt-4">
