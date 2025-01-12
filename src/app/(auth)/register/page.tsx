@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { auth, db, collection, addDoc } from "@/firebase/config";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
 import toast from "react-hot-toast";
 import useAuth from "@/app/hook/useAuth";
 
@@ -116,13 +117,18 @@ export default function RegisterPage() {
       toast.success("Registration successful!");
 
       console.log("User registered and profile updated:", user);
-    } catch (error: any) {
-      if (error.code === "auth/email-already-in-use") {
-        toast.error("This email is already in use. Please try another.");
-        router.push("/register");
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        if (error.code === "auth/email-already-in-use") {
+          toast.error("This email is already in use. Please try another.");
+          router.push("/register");
+        } else {
+          toast.error("Failed to register. Please try again.");
+          console.error("Error during registration:", error);
+        }
       } else {
-        toast.error("Failed to register. Please try again.");
-        console.error("Error during registration:", error);
+        toast.error("An unknown error occurred. Please try again.");
+        console.error("Unexpected error:", error);
       }
     } finally {
       setLoading(false);
